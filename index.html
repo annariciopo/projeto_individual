@@ -1,0 +1,94 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"/>
+    <!-- título na aba -->
+    <title>Pula Moeda</title>
+    <!-- adicionando a biblioteca phaser -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.23.0/dist/phaser.js"></script>
+    <!-- integrando os dois aquivos .js das cenas (inicio e jogo) -->
+    <script src="scenes/inicio.js"></script>
+    <script src="scenes/jogo.js"></script>
+
+    <!-- adicionando css -->
+    <style>
+        /* se refirindo ao "body" do html */
+        body {
+            /* colacando a altura como 100% da altura do dispositivo */
+            height: 100vh;
+            /* retirando a margem automática */
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- div onde o jogo será "processado" -->
+    <div id="game"></div>
+
+    <!-- adicionando configurações javascript -->
+    <script type="text/javascript">
+
+        // configurações básicas do jogo
+        const config = {
+            // definindo o renderizador 
+            type: Phaser.AUTO,
+            // centralizando
+            autoCenter: Phaser.Scale.CENTER,
+            // largura = 500px
+            width: 500, 
+            // altura = 650
+            height: 650, 
+            // cor de fundo
+            backgroundColor: '#0067FF',
+            // adicionando física ao jogo
+            physics: {
+                // colocando o jogo como "arcade" (função do phaser)
+                default: 'arcade',
+                // características do jogo
+                arcade: {
+                    // gravidade
+                    gravity: { y: 410 },
+                    // tornando invisivel as bordas de colisão
+                    debug: false 
+                }
+            },
+            // se refirindo à div "game"
+            parent: "game",
+            dom:{
+               createContainer: true,
+            },
+            // definindo a ordem das cenas
+            scene: [inicio, jogo],
+        };
+        
+        // criando o jogo com base nas propriedades definidas na constante "config"
+        var game = new Phaser.Game(config);
+
+        // variáveis que têm a altura e a largura 
+        var largura = 500; 
+        var altura = 650;
+
+        // criando as variáveis necessárias
+        var botao;
+        var plataformas = ['plataforma1', 'plataforma2', 'plataforma3'];
+        var moeda;
+        var personagem;
+        var teclado;
+        var pulo;
+        var pontos = 0;
+        var placar;
+        var tempoPulo;
+        var posicaoMoedaX;
+        var posicaoMoedaY;
+        var sorteio = 1;
+        var sorteioVerificar = 1;
+        var pontosInicio = 0;
+
+        // iniciar com o arquivo inicio.js
+        game.scene.start('incio');
+
+    </script>
+
+</body>
+</html>
